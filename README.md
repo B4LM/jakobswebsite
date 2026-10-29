@@ -1,24 +1,19 @@
-# Jakob's Workshop
+# LetItRip_ROS website
 
-Static website (plain HTML and CSS, no build step), hosted with GitHub Pages.
+Documentation site for the LetItRip_ROS meltybrain robot. Plain HTML and CSS, no build step, hosted with GitHub Pages at https://b4lm.github.io/jakobswebsite/.
 
 ```
-index.html                     home page
-assets/css/site.css            shared look: colours, fonts, layout
-projects/letitrip/index.html   LetItRip_ROS project page
-projects/letitrip/wiring.html  wiring map
-templates/page.html            starting point for new pages
-jakobswebsite.html, jakob2.html  earlier experiments
+index.html           project overview
+wiring.html          wiring map
+assets/css/site.css  shared look: colours, fonts, layout
+templates/page.html  starting point for new pages
 ```
 
 ## Add a page
 
-1. Copy `templates/page.html` to where it belongs, e.g. `projects/letitrip/parts.html`.
+1. Copy `templates/page.html` to the top folder, e.g. `parts.html`.
 2. Change the title, breadcrumb and content.
-3. Link it from the "Documentation" list in `projects/letitrip/index.html`
-   (turn the `planned` entry into a link and change its tag to `<span class="tag ok">available</span>`).
-
-A new project gets its own folder under `projects/` and an entry on the home page.
+3. Link it from the "Documentation" list in `index.html` (turn the `planned` entry into a link and change its tag to `<span class="tag ok">available</span>`). Main pages also go into the header nav of every page.
 
 ## Preview locally
 
@@ -30,5 +25,4 @@ Then open http://localhost:8000.
 
 ## Publish
 
-Push to `main`. In the repository settings under Pages, the source must be "Deploy from a branch", branch `main`, folder `/ (root)`.
-The site is then at https://b4lm.github.io/jakobswebsite/.
+Push to `main`. GitHub Pages publishes the branch `main`, folder `/ (root)`.
