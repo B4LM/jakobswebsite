@@ -29,6 +29,7 @@
 .pill-r { fill: var(--rail-bg); stroke: var(--rail); stroke-width: 1.4; }
 .pill-g { fill: var(--panel); stroke: var(--fg); stroke-width: 1.4; }
 .pill-o { fill: var(--panel); stroke: var(--rail); stroke-width: 1.4; stroke-dasharray: 3 3; }
+.cap { stroke: var(--fg); stroke-width: 2.4; fill: none; }
 .motor { fill: var(--panel); stroke: var(--fg); stroke-width: 1.5; }
 .t { font: 600 14px var(--display); fill: var(--fg); letter-spacing: .02em; }
 .tl { font: 700 20px var(--display); fill: var(--fg); letter-spacing: .02em; }
@@ -68,7 +69,7 @@
       <h2 id="robot">On the robot</h2>
       <figure>
       <div class="sheet">
-        <svg viewBox="0 0 1100 750" role="img" aria-label="Robot wiring: the LiPo goes through the power switch to the two ESCs (VBAT) and to a 5 V regulator. The Teensy 4.0 drives ESC 1 on pin 4 and ESC 2 on pin 8 with DSHOT and reads their telemetry on pins 0 and 7. On the other side it reads the H3LIS331 accelerometer over I2C on pins 18 and 19, the SBUS receiver on pin 15, the HC-12 radio on pins 16 and 17, drives the RGB LED on pins 2, 3 and 5 and the LED strip on pin 6. Pins 20 and 21 are reserved for a planned distance sensor.">
+        <svg viewBox="0 0 1100 750" role="img" aria-label="Robot wiring: the LiPo goes through the power switch to the two ESCs (VBAT) and to a 5 V regulator. The Teensy 4.0 drives ESC 1 on pin 4 and ESC 2 on pin 8 with DSHOT and reads their telemetry on pins 0 and 7. On the other side it reads the H3LIS331 accelerometer over I2C on pins 18 and 19, the SBUS receiver on pin 15, the HC-12 radio on pins 16 and 17, drives the RGB LED on pins 2, 3 and 5 and the LED strip on pin 6 through a 74AHCT125 level shifter. A 470 µF capacitor sits across VBAT. Pins 20 and 21 are reserved for a planned distance sensor.">
           <defs>
             <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
             <marker id="ap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah-p"/></marker>
@@ -85,6 +86,17 @@
           <text class="s" x="300" y="85" text-anchor="middle">or removable link</text>
           <line class="wp" x1="370" y1="70" x2="638" y2="70" marker-end="url(#ap)"/>
           <circle class="dot-p" cx="520" cy="70" r="4"/>
+          <circle class="dot-p" cx="430" cy="70" r="4"/>
+          <line class="wp" x1="430" y1="70" x2="430" y2="93"/>
+          <line class="cap" x1="418" y1="93" x2="442" y2="93"/>
+          <path class="cap" d="M418 104 Q430 97 442 104"/>
+          <line class="w" x1="430" y1="101" x2="430" y2="122"/>
+          <line class="w" x1="420" y1="122" x2="440" y2="122"/>
+          <line class="w" x1="424" y1="126" x2="436" y2="126"/>
+          <line class="w" x1="428" y1="130" x2="432" y2="130"/>
+          <text class="tp" x="412" y="92" text-anchor="end">+</text>
+          <text class="pin" x="416" y="116" text-anchor="end">470 µF</text>
+          <text class="sm" x="416" y="131" text-anchor="end">≥ 35 V · low ESR</text>
           <line class="wp" x1="520" y1="70" x2="520" y2="112"/>
           <rect class="pill-p" x="486" y="112" width="68" height="22" rx="11"/>
           <text class="tp" x="520" y="127" text-anchor="middle">VBAT</text>
@@ -219,8 +231,14 @@
           <text class="s" x="905" y="552" text-anchor="middle">blue: ROS link active</text>
 
           <!-- LED strip -->
-          <line class="w" x1="690" y1="610" x2="798" y2="610" marker-end="url(#a)"/>
-          <text class="lab" x="745" y="604" text-anchor="middle">DIN</text>
+          <line class="w" x1="690" y1="610" x2="710" y2="610" marker-end="url(#a)"/>
+          <rect class="box" x="712" y="594" width="70" height="34" rx="3"/>
+          <text class="pin" x="747" y="609" text-anchor="middle">AHCT125</text>
+          <text class="sm" x="747" y="622" text-anchor="middle">3.3→5 V</text>
+          <line class="wr" x1="747" y1="594" x2="747" y2="586"/>
+          <rect class="pill-r" x="724" y="566" width="46" height="20" rx="10"/>
+          <text class="tr" x="747" y="580" text-anchor="middle">5 V</text>
+          <line class="w" x1="782" y1="610" x2="798" y2="610" marker-end="url(#a)"/>
           <rect class="box" x="800" y="590" width="210" height="55" rx="4"/>
           <text class="t" x="905" y="613" text-anchor="middle">LED strip · 11 × WS2812</text>
           <text class="s" x="905" y="632" text-anchor="middle">GRB · 800 kHz</text>
@@ -342,7 +360,7 @@
           <tr><td class="mono">2</td><td>LED red</td><td>RGB LED via resistor</td><td class="note">Heading marker while spinning</td></tr>
           <tr><td class="mono">3</td><td>LED green</td><td>RGB LED via resistor</td><td class="note">Set up in code, currently unused</td></tr>
           <tr><td class="mono">5</td><td>LED blue</td><td>RGB LED via resistor</td><td class="note">On while ROS mode is active and commands arrive</td></tr>
-          <tr><td class="mono">6</td><td>LED strip data</td><td>WS2812 DIN</td><td class="note">A 74HCT245 level shifter to 5 V makes this reliable</td></tr>
+          <tr><td class="mono">6</td><td>LED strip data</td><td>74AHCT125 input 1A (pin 2)</td><td class="note">The level shifter output 1Y (pin 3) drives the strip DIN with 5 V</td></tr>
           <tr><td class="mono">21 · RX5</td><td>Reserved</td><td>Distance sensor TX</td><td class="note"><span class="tag">planned</span></td></tr>
           <tr><td class="mono">20 · TX5</td><td>Reserved</td><td>Distance sensor RX</td><td class="note"><span class="tag">planned</span></td></tr>
         </tbody>
@@ -355,7 +373,8 @@
       <ul class="checks">
       <li>Check that your PCB routes the ESC telemetry wires to pins 0 and 7 and breaks out pins 16 and 17 for the HC-12. Those are the connections the existing code cannot confirm.</li>
       <li>If an ESC has its own 5 V output (BEC), use either that or the separate regulator for the 5 V rail, not both.</li>
-      <li>Put a capacitor of about 470 µF across VBAT close to the ESCs to absorb voltage spikes.</li>
+      <li>Solder the 470 µF capacitor (at least 35 V, low ESR) across VBAT as close to the ESCs as possible, with the stripe (minus) on GND. It absorbs the voltage spikes the ESCs cause.</li>
+      <li>Wire the 74AHCT125 (DIL-14): pin 14 to 5 V, pin 7 to GND, pin 1 (1OE) to GND, pin 2 (1A) from Teensy pin 6, pin 3 (1Y) to the strip DIN. Tie the unused inputs (pins 5, 9, 12) and enable pins (4, 10, 13) to GND.</li>
       <li>Mount the accelerometer 4 cm from the spin centre, or change <code>IMU_RADIUS</code> in <code>src/main.cpp</code> to match.</li>
       <li>Assign SBUS channel 8 (index 7 in the code) to a switch on the transmitter. It selects RC or ROS control.</li>
     </ul>
