@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Page name</title>
+  <meta name="description" content="One sentence about this page.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../../assets/css/site.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../../index.html"><svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2 A10 10 0 0 1 20.7 7" fill="none" style="stroke:var(--accent)" stroke-width="4"/><circle cx="12" cy="12" r="2.5" fill="currentColor"/></svg>Jakob's Workshop</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="../../index.html">Home</a>
+        <a href="../../projects/letitrip/index.html" aria-current="page">LetItRip_ROS</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!--
+      New page:
+      1. Copy this file next to the pages it belongs to, e.g. projects/letitrip/parts.html
+      2. Change the <title>, the description, the breadcrumb and the content below
+      3. Link it from the project page (projects/letitrip/index.html, "Documentation" list)
+      The links in the header use "../../" because pages live two folders deep.
+    -->
+    <div class="intro">
+      <p class="crumbs"><a href="../../index.html">Home</a> / <a href="index.html">LetItRip_ROS</a> / Page name</p>
+      <h1>Page name</h1>
+      <p class="lede">One or two sentences about what this page is for.</p>
+    </div>
+
+    <section aria-labelledby="first">
+      <h2 id="first">First section</h2>
+      <div class="prose">
+        <p>Text goes here. Use <code>code</code> for pin names and file names.</p>
+        <ul>
+          <li>Lists work like this.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="table">
+      <h2 id="table">A table</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Part</th><th>Qty</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><td>Teensy 4.0</td><td class="mono">1</td><td class="note">Main controller</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>Jakob's Workshop · robots, firmware and notes</span>
+      <span>Updated 29 Oct 2026</span>
+    </div>
+  </footer>
+</body>
+</html>

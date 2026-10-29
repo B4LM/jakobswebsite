@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>LetItRip Wiring Map</title>
+  <meta name="description" content="Wiring and Teensy pin map of the LetItRip meltybrain.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="../../assets/css/site.css">
+  <style>
+  /* schematic marks, colours come from site.css */
+  .legend { display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.legend svg { width: 34px; height: 10px; flex: none; }
+.box { fill: var(--panel); stroke: var(--fg); stroke-width: 1.5; }
+.mcu { fill: var(--panel-strong); stroke: var(--fg); stroke-width: 2.5; }
+.plan { fill: var(--panel); stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.group { fill: none; stroke: var(--border); stroke-width: 1.5; }
+.w { stroke: var(--fg); stroke-width: 1.6; fill: none; }
+.wp { stroke: var(--accent); stroke-width: 2.6; fill: none; }
+.wr { stroke: var(--rail); stroke-width: 2; fill: none; }
+.wo { stroke: var(--muted); stroke-width: 1.6; stroke-dasharray: 2 4; fill: none; }
+.wx { stroke: var(--radio); stroke-width: 2; stroke-dasharray: 8 6; fill: none; }
+.ah { fill: var(--fg); } .ah-p { fill: var(--accent); } .ah-o { fill: var(--muted); } .ah-x { fill: var(--radio); }
+.dot { fill: var(--fg); } .dot-p { fill: var(--accent); }
+.pill-p { fill: var(--accent-bg); stroke: var(--accent); stroke-width: 1.4; }
+.pill-r { fill: var(--rail-bg); stroke: var(--rail); stroke-width: 1.4; }
+.pill-g { fill: var(--panel); stroke: var(--fg); stroke-width: 1.4; }
+.pill-o { fill: var(--panel); stroke: var(--rail); stroke-width: 1.4; stroke-dasharray: 3 3; }
+.motor { fill: var(--panel); stroke: var(--fg); stroke-width: 1.5; }
+.t { font: 600 14px var(--display); fill: var(--fg); letter-spacing: .02em; }
+.tl { font: 700 20px var(--display); fill: var(--fg); letter-spacing: .02em; }
+.s { font: 12px var(--sans); fill: var(--muted); }
+.sm { font: 11px var(--mono); fill: var(--muted); }
+.pin { font: 500 12px var(--mono); fill: var(--fg); }
+.lab { font: 11px var(--mono); fill: var(--muted); }
+.tp { font: 600 11px var(--mono); fill: var(--accent); }
+.tr { font: 600 11px var(--mono); fill: var(--rail); }
+.tg { font: 600 11px var(--mono); fill: var(--fg); }
+.tx { font: 11px var(--mono); fill: var(--radio); }
+.tplan { font: 600 14px var(--display); fill: var(--muted); letter-spacing: .02em; }
+
+  ul.checks { margin: 0; padding-left: 22px; display: grid; gap: 6px; max-width: 75ch; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="../../index.html"><svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2 A10 10 0 0 1 20.7 7" fill="none" style="stroke:var(--accent)" stroke-width="4"/><circle cx="12" cy="12" r="2.5" fill="currentColor"/></svg>Jakob's Workshop</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="../../index.html">Home</a>
+        <a href="../../projects/letitrip/index.html" aria-current="page">LetItRip_ROS</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="intro">
+      <p class="crumbs"><a href="../../index.html">Home</a> / <a href="index.html">LetItRip_ROS</a> / Wiring map</p>
+      <h1>Wiring map</h1>
+      <p class="lede">How every electrical part connects, taken from the pin numbers in <code>src/main.cpp</code>, the DSHOT library and the ROS radio link. Not yet checked against the PCB.</p>
+      <p class="minor">Power is drawn as net labels: every <b>VBAT</b> flag is the same wire after the power switch, every <b>5 V</b> flag is the regulator output, and all grounds are common.</p>
+    </div>
+
+    <section aria-labelledby="robot">
+      <h2 id="robot">On the robot</h2>
+      <figure>
+      <div class="sheet">
+        <svg viewBox="0 0 1100 750" role="img" aria-label="Robot wiring: the LiPo goes through the power switch to the two ESCs (VBAT) and to a 5 V regulator. The Teensy 4.0 drives ESC 1 on pin 4 and ESC 2 on pin 8 with DSHOT and reads their telemetry on pins 0 and 7. On the other side it reads the H3LIS331 accelerometer over I2C on pins 18 and 19, the SBUS receiver on pin 15, the HC-12 radio on pins 16 and 17, drives the RGB LED on pins 2, 3 and 5 and the LED strip on pin 6. Pins 20 and 21 are reserved for a planned distance sensor.">
+          <defs>
+            <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+            <marker id="ap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah-p"/></marker>
+            <marker id="ao" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah-o"/></marker>
+          </defs>
+
+          <!-- power chain -->
+          <rect class="box" x="30" y="40" width="150" height="60" rx="4"/>
+          <text class="t" x="105" y="66" text-anchor="middle">LiPo battery</text>
+          <text class="s" x="105" y="85" text-anchor="middle">cells to suit ESCs</text>
+          <line class="wp" x1="180" y1="70" x2="228" y2="70" marker-end="url(#ap)"/>
+          <rect class="box" x="230" y="40" width="140" height="60" rx="4"/>
+          <text class="t" x="300" y="66" text-anchor="middle">Power switch</text>
+          <text class="s" x="300" y="85" text-anchor="middle">or removable link</text>
+          <line class="wp" x1="370" y1="70" x2="638" y2="70" marker-end="url(#ap)"/>
+          <circle class="dot-p" cx="520" cy="70" r="4"/>
+          <line class="wp" x1="520" y1="70" x2="520" y2="112"/>
+          <rect class="pill-p" x="486" y="112" width="68" height="22" rx="11"/>
+          <text class="tp" x="520" y="127" text-anchor="middle">VBAT</text>
+          <text class="s" x="562" y="127">to both ESCs</text>
+          <rect class="box" x="640" y="40" width="160" height="60" rx="4"/>
+          <text class="t" x="720" y="66" text-anchor="middle">5 V regulator (BEC)</text>
+          <text class="s" x="720" y="85" text-anchor="middle">about 1 A</text>
+          <line class="wr" x1="800" y1="70" x2="850" y2="70"/>
+          <rect class="pill-r" x="850" y="59" width="52" height="22" rx="11"/>
+          <text class="tr" x="876" y="74" text-anchor="middle">5 V</text>
+          <text class="s" x="912" y="74">Teensy and 5 V modules</text>
+
+          <!-- Teensy -->
+          <rect class="mcu" x="470" y="160" width="220" height="560" rx="6"/>
+          <text class="tl" x="580" y="466" text-anchor="middle">Teensy 4.0</text>
+          <text class="s" x="580" y="485" text-anchor="middle">600 MHz · 3.3 V logic</text>
+
+          <!-- left pins -->
+          <text class="pin" x="480" y="204">VIN</text>
+          <text class="pin" x="480" y="234">GND</text>
+          <text class="pin" x="480" y="324">4</text>
+          <text class="pin" x="480" y="354">0 · RX1</text>
+          <text class="pin" x="480" y="524">8</text>
+          <text class="pin" x="480" y="554">7 · RX2</text>
+
+          <line class="wr" x1="470" y1="200" x2="430" y2="200"/>
+          <rect class="pill-r" x="378" y="189" width="52" height="22" rx="11"/>
+          <text class="tr" x="404" y="204" text-anchor="middle">5 V</text>
+          <line class="w" x1="470" y1="230" x2="430" y2="230"/>
+          <rect class="pill-g" x="378" y="219" width="52" height="22" rx="11"/>
+          <text class="tg" x="404" y="234" text-anchor="middle">GND</text>
+
+          <!-- ESC 1 + motor 1 -->
+          <line class="wp" x1="305" y1="290" x2="305" y2="272"/>
+          <rect class="pill-p" x="271" y="250" width="68" height="22" rx="11"/>
+          <text class="tp" x="305" y="265" text-anchor="middle">VBAT</text>
+          <rect class="box" x="230" y="290" width="150" height="90" rx="4"/>
+          <text class="t" x="305" y="318" text-anchor="middle">ESC 1</text>
+          <text class="s" x="305" y="337" text-anchor="middle">DSHOT · 3D mode</text>
+          <text class="s" x="305" y="355" text-anchor="middle">telemetry wire</text>
+          <line class="w" x1="470" y1="320" x2="382" y2="320" marker-end="url(#a)"/>
+          <text class="lab" x="425" y="314" text-anchor="middle">DSHOT</text>
+          <line class="wo" x1="380" y1="350" x2="468" y2="350" marker-end="url(#ao)"/>
+          <text class="lab" x="425" y="367" text-anchor="middle">telemetry</text>
+          <line class="w" x1="230" y1="322" x2="140" y2="322"/>
+          <line class="w" x1="230" y1="335" x2="140" y2="335"/>
+          <line class="w" x1="230" y1="348" x2="140" y2="348"/>
+          <text class="lab" x="190" y="314" text-anchor="middle">3 phases</text>
+          <circle class="motor" cx="100" cy="335" r="40"/>
+          <text class="t" x="100" y="333" text-anchor="middle">M1</text>
+          <text class="sm" x="100" y="350" text-anchor="middle">brushless</text>
+
+          <!-- ESC 2 + motor 2 -->
+          <line class="wp" x1="305" y1="490" x2="305" y2="472"/>
+          <rect class="pill-p" x="271" y="450" width="68" height="22" rx="11"/>
+          <text class="tp" x="305" y="465" text-anchor="middle">VBAT</text>
+          <rect class="box" x="230" y="490" width="150" height="90" rx="4"/>
+          <text class="t" x="305" y="518" text-anchor="middle">ESC 2</text>
+          <text class="s" x="305" y="537" text-anchor="middle">DSHOT · 3D mode</text>
+          <text class="s" x="305" y="555" text-anchor="middle">telemetry wire</text>
+          <line class="w" x1="470" y1="520" x2="382" y2="520" marker-end="url(#a)"/>
+          <text class="lab" x="425" y="514" text-anchor="middle">DSHOT</text>
+          <line class="wo" x1="380" y1="550" x2="468" y2="550" marker-end="url(#ao)"/>
+          <text class="lab" x="425" y="567" text-anchor="middle">telemetry</text>
+          <line class="w" x1="230" y1="522" x2="140" y2="522"/>
+          <line class="w" x1="230" y1="535" x2="140" y2="535"/>
+          <line class="w" x1="230" y1="548" x2="140" y2="548"/>
+          <text class="lab" x="190" y="514" text-anchor="middle">3 phases</text>
+          <circle class="motor" cx="100" cy="535" r="40"/>
+          <text class="t" x="100" y="533" text-anchor="middle">M2</text>
+          <text class="sm" x="100" y="550" text-anchor="middle">brushless</text>
+
+          <!-- right pins -->
+          <text class="pin" x="680" y="204" text-anchor="end">3V3</text>
+          <text class="pin" x="680" y="234" text-anchor="end">18 · SDA</text>
+          <text class="pin" x="680" y="259" text-anchor="end">19 · SCL</text>
+          <text class="pin" x="680" y="324" text-anchor="end">15 · RX3</text>
+          <text class="pin" x="680" y="414" text-anchor="end">16 · RX4</text>
+          <text class="pin" x="680" y="444" text-anchor="end">17 · TX4</text>
+          <text class="pin" x="680" y="514" text-anchor="end">2</text>
+          <text class="pin" x="680" y="534" text-anchor="end">3</text>
+          <text class="pin" x="680" y="554" text-anchor="end">5</text>
+          <text class="pin" x="680" y="614" text-anchor="end">6</text>
+          <text class="pin" x="680" y="684" text-anchor="end">21 · RX5</text>
+          <text class="pin" x="680" y="704" text-anchor="end">20 · TX5</text>
+
+          <!-- accelerometer -->
+          <line class="wr" x1="690" y1="200" x2="800" y2="200"/>
+          <text class="lab" x="745" y="194" text-anchor="middle">3.3 V</text>
+          <line class="w" x1="690" y1="230" x2="800" y2="230"/>
+          <text class="lab" x="745" y="224" text-anchor="middle">SDA</text>
+          <line class="w" x1="690" y1="255" x2="800" y2="255"/>
+          <text class="lab" x="745" y="249" text-anchor="middle">SCL</text>
+          <rect class="box" x="800" y="180" width="210" height="95" rx="4"/>
+          <text class="t" x="905" y="208" text-anchor="middle">H3LIS331 accelerometer</text>
+          <text class="s" x="905" y="228" text-anchor="middle">I2C · ±400 g range</text>
+          <text class="s" x="905" y="247" text-anchor="middle">4 cm from spin centre</text>
+
+          <!-- SBUS receiver -->
+          <line class="w" x1="800" y1="320" x2="692" y2="320" marker-end="url(#a)"/>
+          <text class="lab" x="745" y="314" text-anchor="middle">SBUS</text>
+          <rect class="box" x="800" y="295" width="210" height="60" rx="4"/>
+          <text class="t" x="905" y="320" text-anchor="middle">SBUS receiver</text>
+          <text class="s" x="905" y="339" text-anchor="middle">2.4 GHz · at least 10 ch</text>
+          <line class="wr" x1="1010" y1="325" x2="1030" y2="325"/>
+          <rect class="pill-r" x="1030" y="314" width="46" height="22" rx="11"/>
+          <text class="tr" x="1053" y="329" text-anchor="middle">5 V</text>
+
+          <!-- HC-12 -->
+          <line class="w" x1="800" y1="410" x2="692" y2="410" marker-end="url(#a)"/>
+          <text class="lab" x="745" y="404" text-anchor="middle">HC-12 TX</text>
+          <line class="w" x1="690" y1="440" x2="798" y2="440" marker-end="url(#a)"/>
+          <text class="lab" x="745" y="434" text-anchor="middle">HC-12 RX</text>
+          <rect class="box" x="800" y="385" width="210" height="80" rx="4"/>
+          <text class="t" x="905" y="410" text-anchor="middle">HC-12 radio</text>
+          <text class="s" x="905" y="429" text-anchor="middle">433 MHz · 9600 baud</text>
+          <text class="s" x="905" y="447" text-anchor="middle">SET pin not connected</text>
+          <line class="wr" x1="1010" y1="425" x2="1030" y2="425"/>
+          <rect class="pill-r" x="1030" y="414" width="46" height="22" rx="11"/>
+          <text class="tr" x="1053" y="429" text-anchor="middle">5 V</text>
+
+          <!-- RGB LED -->
+          <line class="w" x1="690" y1="510" x2="798" y2="510" marker-end="url(#a)"/>
+          <text class="lab" x="745" y="505" text-anchor="middle">red</text>
+          <line class="wo" x1="690" y1="530" x2="798" y2="530" marker-end="url(#ao)"/>
+          <text class="lab" x="745" y="525" text-anchor="middle">green</text>
+          <line class="w" x1="690" y1="550" x2="798" y2="550" marker-end="url(#a)"/>
+          <text class="lab" x="745" y="545" text-anchor="middle">blue</text>
+          <rect class="box" x="800" y="490" width="210" height="80" rx="4"/>
+          <text class="t" x="905" y="515" text-anchor="middle">RGB status LED</text>
+          <text class="s" x="905" y="534" text-anchor="middle">red: heading marker</text>
+          <text class="s" x="905" y="552" text-anchor="middle">blue: ROS link active</text>
+
+          <!-- LED strip -->
+          <line class="w" x1="690" y1="610" x2="798" y2="610" marker-end="url(#a)"/>
+          <text class="lab" x="745" y="604" text-anchor="middle">DIN</text>
+          <rect class="box" x="800" y="590" width="210" height="55" rx="4"/>
+          <text class="t" x="905" y="613" text-anchor="middle">LED strip · 11 × WS2812</text>
+          <text class="s" x="905" y="632" text-anchor="middle">GRB · 800 kHz</text>
+          <line class="wr" x1="1010" y1="617" x2="1030" y2="617"/>
+          <rect class="pill-r" x="1030" y="606" width="46" height="22" rx="11"/>
+          <text class="tr" x="1053" y="621" text-anchor="middle">5 V</text>
+
+          <!-- planned distance sensor -->
+          <line class="wo" x1="800" y1="680" x2="692" y2="680" marker-end="url(#ao)"/>
+          <text class="lab" x="745" y="674" text-anchor="middle">sensor TX</text>
+          <line class="wo" x1="690" y1="700" x2="798" y2="700" marker-end="url(#ao)"/>
+          <text class="lab" x="745" y="694" text-anchor="middle">sensor RX</text>
+          <rect class="plan" x="800" y="660" width="210" height="55" rx="4"/>
+          <text class="tplan" x="905" y="683" text-anchor="middle">Distance sensor (planned)</text>
+          <text class="s" x="905" y="702" text-anchor="middle">e.g. TFmini-S · UART</text>
+          <line class="wo" x1="1010" y1="687" x2="1030" y2="687"/>
+          <rect class="pill-o" x="1030" y="676" width="46" height="22" rx="11"/>
+          <text class="tr" x="1053" y="691" text-anchor="middle">5 V</text>
+        </svg>
+      </div>
+      <figcaption>The Teensy sits between the drive side (left: ESCs and motors on DSHOT) and the sensing and control side (right: accelerometer, RC receiver, ROS radio, lights). Arrows show the direction of the signal. ESC telemetry only exists if your ESCs have a telemetry wire.</figcaption>
+    </figure>
+      <div class="legend" aria-label="Legend">
+      <span><svg viewBox="0 0 34 10" aria-hidden="true"><line x1="0" y1="5" x2="34" y2="5" class="wp"/></svg>Battery power (VBAT)</span>
+      <span><svg viewBox="0 0 34 10" aria-hidden="true"><line x1="0" y1="5" x2="34" y2="5" class="wr"/></svg>5 V and 3.3 V supply</span>
+      <span><svg viewBox="0 0 34 10" aria-hidden="true"><line x1="0" y1="5" x2="34" y2="5" class="w"/></svg>Signal</span>
+      <span><svg viewBox="0 0 34 10" aria-hidden="true"><line x1="0" y1="5" x2="34" y2="5" class="wo"/></svg>Optional, unused or planned</span>
+      <span><svg viewBox="0 0 34 10" aria-hidden="true"><line x1="0" y1="5" x2="34" y2="5" class="wx"/></svg>Radio link</span>
+    </div>
+
+    </section>
+
+    <section aria-labelledby="base">
+      <h2 id="base">Base station and radio links</h2>
+      <figure>
+      <div class="sheet">
+        <svg viewBox="0 0 1100 330" role="img" aria-label="Base station: the laptop running ROS 2 connects over USB to an ESP32, which talks to an HC-12 radio on pins 21, 22 and 15. That HC-12 talks to the robot's HC-12 at 433 MHz. Separately, the RC transmitter talks to the robot's SBUS receiver at 2.4 GHz. An arena camera connects to the laptop over USB for autonomous driving.">
+          <defs>
+            <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+            <marker id="bx" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah-x"/></marker>
+            <marker id="bo" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah-o"/></marker>
+          </defs>
+
+          <rect class="plan" x="30" y="20" width="190" height="60" rx="4"/>
+          <text class="tplan" x="125" y="45" text-anchor="middle">Arena camera</text>
+          <text class="s" x="125" y="64" text-anchor="middle">only for autonomous driving</text>
+          <line class="wo" x1="125" y1="80" x2="125" y2="128" marker-end="url(#bo)"/>
+          <text class="lab" x="135" y="109">USB</text>
+
+          <rect class="box" x="30" y="130" width="190" height="90" rx="4"/>
+          <text class="t" x="125" y="157" text-anchor="middle">Laptop</text>
+          <text class="s" x="125" y="177" text-anchor="middle">Ubuntu 24.04 · ROS 2 Jazzy</text>
+          <text class="sm" x="125" y="197" text-anchor="middle">radio_bridge_node</text>
+
+          <line class="w" x1="222" y1="175" x2="318" y2="175" marker-start="url(#b)" marker-end="url(#b)"/>
+          <text class="lab" x="270" y="168" text-anchor="middle">USB serial</text>
+          <text class="lab" x="270" y="192" text-anchor="middle">115200</text>
+
+          <rect class="box" x="320" y="130" width="170" height="90" rx="4"/>
+          <text class="t" x="405" y="157" text-anchor="middle">ESP32</text>
+          <text class="sm" x="405" y="177" text-anchor="middle">transciever_PC_side</text>
+          <text class="s" x="405" y="197" text-anchor="middle">sketch from robofetz_as</text>
+
+          <line class="w" x1="490" y1="150" x2="588" y2="150" marker-end="url(#b)"/>
+          <text class="lab" x="540" y="144" text-anchor="middle">21 → RX</text>
+          <line class="w" x1="590" y1="175" x2="492" y2="175" marker-end="url(#b)"/>
+          <text class="lab" x="540" y="169" text-anchor="middle">22 ← TX</text>
+          <line class="w" x1="490" y1="200" x2="588" y2="200" marker-end="url(#b)"/>
+          <text class="lab" x="540" y="194" text-anchor="middle">15 → SET</text>
+
+          <rect class="box" x="590" y="130" width="150" height="90" rx="4"/>
+          <text class="t" x="665" y="157" text-anchor="middle">HC-12 radio</text>
+          <text class="s" x="665" y="177" text-anchor="middle">433 MHz · 9600 baud</text>
+          <text class="s" x="665" y="197" text-anchor="middle">SET held high</text>
+
+          <line class="wx" x1="742" y1="175" x2="898" y2="175" marker-start="url(#bx)" marker-end="url(#bx)"/>
+          <text class="tx" x="820" y="166" text-anchor="middle">433 MHz</text>
+          <text class="lab" x="820" y="194" text-anchor="middle">CMD, WPN →</text>
+          <text class="lab" x="820" y="209" text-anchor="middle">← TLM (planned)</text>
+
+          <rect class="box" x="590" y="240" width="150" height="60" rx="4"/>
+          <text class="t" x="665" y="265" text-anchor="middle">RC transmitter</text>
+          <text class="s" x="665" y="284" text-anchor="middle">SBUS · at least 10 ch</text>
+          <line class="wx" x1="742" y1="270" x2="898" y2="270" marker-end="url(#bx)"/>
+          <text class="tx" x="820" y="261" text-anchor="middle">2.4 GHz</text>
+
+          <rect class="group" x="880" y="110" width="190" height="205" rx="8"/>
+          <text class="t" x="975" y="134" text-anchor="middle">Robot</text>
+          <rect class="box" x="900" y="150" width="150" height="50" rx="4"/>
+          <text class="t" x="975" y="172" text-anchor="middle">HC-12 radio</text>
+          <text class="sm" x="975" y="189" text-anchor="middle">Teensy pins 16 / 17</text>
+          <rect class="box" x="900" y="245" width="150" height="50" rx="4"/>
+          <text class="t" x="975" y="267" text-anchor="middle">SBUS receiver</text>
+          <text class="sm" x="975" y="284" text-anchor="middle">Teensy pin 15</text>
+        </svg>
+      </div>
+      <figcaption>Two independent radio links reach the robot. The HC-12 pair carries the ROS commands; the RC transmitter keeps working on its own link and decides through the mode switch whether ROS or the sticks drive. Both HC-12 modules must use the same channel and baud rate.</figcaption>
+    </figure>
+    </section>
+
+    <section aria-labelledby="pins">
+      <h2 id="pins">Teensy pin map</h2>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Pin</th><th>Function</th><th>Connects to</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">VIN</td><td>Supply in</td><td>5 V regulator</td><td class="note">Teensy 4.0 takes 3.6 to 5.5 V here</td></tr>
+          <tr><td class="mono">3V3</td><td>Supply out</td><td>Accelerometer VIN</td><td class="note">3.3 V from the Teensy's own regulator</td></tr>
+          <tr><td class="mono">GND</td><td>Ground</td><td>Every module, ESC signal ground, battery minus</td><td class="note">All grounds common</td></tr>
+          <tr><td class="mono">4</td><td>DSHOT out</td><td>ESC 1 signal</td><td class="note">Fixed by the teensyshot library</td></tr>
+          <tr><td class="mono">8</td><td>DSHOT out</td><td>ESC 2 signal</td><td class="note">Fixed by the teensyshot library</td></tr>
+          <tr><td class="mono">0 · RX1</td><td>ESC 1 telemetry in</td><td>ESC 1 telemetry wire</td><td class="note"><span class="tag check">check PCB</span> 115200 baud</td></tr>
+          <tr><td class="mono">7 · RX2</td><td>ESC 2 telemetry in</td><td>ESC 2 telemetry wire</td><td class="note"><span class="tag check">check PCB</span> 115200 baud</td></tr>
+          <tr><td class="mono">15 · RX3</td><td>SBUS in</td><td>SBUS receiver signal</td><td class="note">Inversion is handled by the SBUS library</td></tr>
+          <tr><td class="mono">16 · RX4</td><td>ROS link in</td><td>HC-12 TX</td><td class="note"><span class="tag check">check PCB</span> 9600 baud</td></tr>
+          <tr><td class="mono">17 · TX4</td><td>ROS link out</td><td>HC-12 RX</td><td class="note">For telemetry to the laptop, nothing is sent yet</td></tr>
+          <tr><td class="mono">18 · SDA</td><td>I2C data</td><td>Accelerometer SDA</td><td class="note"></td></tr>
+          <tr><td class="mono">19 · SCL</td><td>I2C clock</td><td>Accelerometer SCL</td><td class="note"></td></tr>
+          <tr><td class="mono">2</td><td>LED red</td><td>RGB LED via resistor</td><td class="note">Heading marker while spinning</td></tr>
+          <tr><td class="mono">3</td><td>LED green</td><td>RGB LED via resistor</td><td class="note">Set up in code, currently unused</td></tr>
+          <tr><td class="mono">5</td><td>LED blue</td><td>RGB LED via resistor</td><td class="note">On while ROS mode is active and commands arrive</td></tr>
+          <tr><td class="mono">6</td><td>LED strip data</td><td>WS2812 DIN</td><td class="note">A 74HCT245 level shifter to 5 V makes this reliable</td></tr>
+          <tr><td class="mono">21 · RX5</td><td>Reserved</td><td>Distance sensor TX</td><td class="note"><span class="tag">planned</span></td></tr>
+          <tr><td class="mono">20 · TX5</td><td>Reserved</td><td>Distance sensor RX</td><td class="note"><span class="tag">planned</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    </section>
+
+    <section aria-labelledby="checks">
+      <h2 id="checks">Before you solder</h2>
+      <ul class="checks">
+      <li>Check that your PCB routes the ESC telemetry wires to pins 0 and 7 and breaks out pins 16 and 17 for the HC-12. Those are the connections the existing code cannot confirm.</li>
+      <li>If an ESC has its own 5 V output (BEC), use either that or the separate regulator for the 5 V rail, not both.</li>
+      <li>Put a capacitor of about 470 µF across VBAT close to the ESCs to absorb voltage spikes.</li>
+      <li>Mount the accelerometer 4 cm from the spin centre, or change <code>IMU_RADIUS</code> in <code>src/main.cpp</code> to match.</li>
+      <li>Assign SBUS channel 8 (index 7 in the code) to a switch on the transmitter. It selects RC or ROS control.</li>
+    </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>Jakob's Workshop · robots, firmware and notes</span>
+      <span>Updated 29 Oct 2026</span>
+    </div>
+  </footer>
+</body>
+</html>

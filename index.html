@@ -1,15 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jakobs Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Jakob's Workshop</title>
+  <meta name="description" content="Build notes for Jakob's robots: wiring, firmware and ROS.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
-  <h1>Jakobs Website</h1>
-  <ul>
-    <li><a href="jakobswebsite.html">jakobswebsite</a></li>
-    <li><a href="jakob2.html">jakob2</a></li>
-  </ul>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2 A10 10 0 0 1 20.7 7" fill="none" style="stroke:var(--accent)" stroke-width="4"/><circle cx="12" cy="12" r="2.5" fill="currentColor"/></svg>Jakob's Workshop</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="projects/letitrip/index.html">LetItRip_ROS</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="intro">
+      <h1>Jakob's Workshop</h1>
+      <p class="lede">Build notes for my robots. Wiring, firmware and how the parts talk to each other, written down so I can find them again at the next event.</p>
+    </div>
+
+    <section aria-labelledby="projects">
+      <h2 id="projects">Projects</h2>
+      <a class="project" href="projects/letitrip/index.html">
+        <div class="project-text">
+          <h3 style="font-size:28px">LetItRip_ROS</h3>
+          <p>A meltybrain combat robot: the whole body spins, and the Teensy pulses the two drive motors at the right moment of each turn to move it across the arena. Driven by RC or by ROS 2 over a radio link.</p>
+          <div class="tags"><span class="tag ok">wiring map</span><span class="tag wip">ROS link in testing</span><span class="tag">monitoring planned</span></div>
+        </div>
+        <div class="project-art">
+          <svg viewBox="0 0 320 220" role="img" aria-label="Top view of a meltybrain robot spinning, with its heading LED drawn as a lit arc">
+            <circle cx="160" cy="110" r="78" style="fill:var(--panel-strong)" stroke="currentColor" stroke-width="2.5"/>
+            <rect x="76" y="96" width="18" height="28" rx="3" fill="currentColor"/>
+            <rect x="226" y="96" width="18" height="28" rx="3" fill="currentColor"/>
+            <circle cx="160" cy="110" r="6" fill="currentColor"/>
+            <path d="M160 18 A92 92 0 0 1 225 45" fill="none" style="stroke:var(--accent)" stroke-width="7" stroke-linecap="round"/>
+            <path d="M262 118 A102 102 0 0 1 200 204" fill="none" style="stroke:var(--muted)" stroke-width="2" stroke-dasharray="5 5"/>
+            <path d="M194 198 L201 205 L205 195" fill="none" style="stroke:var(--muted)" stroke-width="2"/>
+            <text x="234" y="30" font-family="IBM Plex Mono, monospace" font-size="12" style="fill:var(--accent)">heading LED</text>
+            <text x="248" y="186" font-family="IBM Plex Mono, monospace" font-size="12" style="fill:var(--muted)">spin</text>
+          </svg>
+        </div>
+      </a>
+    </section>
+
+    <section aria-labelledby="older">
+      <h2 id="older">Earlier experiments</h2>
+      <p class="minor">My first web pages: <a href="jakobswebsite.html">Jakobs coole Webseite</a> and <a href="jakob2.html">Jakob2</a>.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>Jakob's Workshop · robots, firmware and notes</span>
+      <span>Updated 29 Oct 2026</span>
+    </div>
+  </footer>
 </body>
 </html>
