@@ -103,6 +103,16 @@ section { display: grid; gap: 16px; min-width: 0; }
 .minor { color: var(--muted); font-size: 15px; }
 .minor a { color: var(--muted); }
 
+/* editable parts list */
+.parts-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
+.parts-tools[hidden] { display: none; }
+.parts-tools p { font: 500 14px var(--mono); }
+.parts-tools button { font: 500 13px var(--sans); color: var(--fg); background: var(--panel); border: 1px solid var(--border); border-radius: 4px; padding: 5px 10px; cursor: pointer; }
+.parts-tools button:hover { border-color: var(--accent); }
+select.status { font: 500 12px var(--mono); color: var(--muted); background: var(--panel); border: 1px solid var(--border); border-radius: 3px; padding: 3px 4px; }
+select.status[data-status="have"], select.status[data-status="ordered"] { color: var(--ok); background: var(--ok-bg); border-color: var(--ok); }
+select.status[data-status="expected"], select.status[data-status="check first"] { color: var(--rail); background: var(--rail-bg); border-color: var(--rail); }
+
 /* figures, tables */
 figure { margin: 0; display: grid; gap: 12px; min-width: 0; }
 .sheet { background: var(--panel); border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; }

@@ -28,7 +28,11 @@
       <h1>Parts list</h1>
       <p class="lede">Every electrical part for the robot and the laptop side, both what is already here and what still has to be bought. The frame and armour are not included.</p>
       <p class="minor">Prices include VAT and exclude shipping. They were checked on 29 and 30 October 2026 and can change. Delivery to Austria still has to be confirmed in the FPV24 cart, because LiPos count as dangerous goods.</p>
-      <div class="tags"><span class="tag ok">have</span><span class="tag wip">expected</span><span class="tag wip">check first</span><span class="tag">buy</span><span class="tag">later</span></div>
+      <div class="parts-tools" id="parts-tools" hidden>
+        <p id="parts-summary" aria-live="polite"></p>
+        <button type="button" id="parts-reset">Reset to published list</button>
+      </div>
+      <p class="minor">Change a status with its dropdown. Changes stay in this browser only, so they do not appear on your phone or for other visitors.</p>
     </div>
 
     <section aria-labelledby="robot">
@@ -124,5 +128,6 @@
       <span>Updated 30 Oct 2026</span>
     </div>
   </footer>
+  <script src="assets/js/parts.js" defer></script>
 </body>
 </html>
