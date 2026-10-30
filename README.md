@@ -5,6 +5,7 @@ Documentation site for the LetItRip_ROS meltybrain robot. Plain HTML and CSS, no
 ```
 index.html           project overview
 wiring.html          wiring map
+parts.html           parts list
 assets/css/site.css  shared look: colours, fonts, layout
 templates/page.html  starting point for new pages
 ```
