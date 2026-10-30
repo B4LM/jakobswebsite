@@ -112,6 +112,7 @@ section { display: grid; gap: 16px; min-width: 0; }
 select.status { font: 500 12px var(--mono); color: var(--muted); background: var(--panel); border: 1px solid var(--border); border-radius: 3px; padding: 3px 4px; }
 select.status[data-status="have"], select.status[data-status="ordered"] { color: var(--ok); background: var(--ok-bg); border-color: var(--ok); }
 select.status[data-status="expected"], select.status[data-status="check first"] { color: var(--rail); background: var(--rail-bg); border-color: var(--rail); }
+tr[data-status="not needed"] td:not(:nth-child(3)) { opacity: .5; text-decoration: line-through; }
 
 /* figures, tables */
 figure { margin: 0; display: grid; gap: 12px; min-width: 0; }

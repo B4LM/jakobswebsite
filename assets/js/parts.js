@@ -8,7 +8,8 @@
     ['expected', 'expected'],
     ['check first', 'check first'],
     ['buy', 'buy'],
-    ['later', 'later']
+    ['later', 'later'],
+    ['not needed', 'not needed']
   ];
 
   function load() {
@@ -53,9 +54,11 @@
       select.dataset.key = key;
       select.dataset.original = original;
       select.dataset.status = select.value;
+      row.dataset.status = select.value;
 
       select.addEventListener('change', function () {
         select.dataset.status = select.value;
+        row.dataset.status = select.value;
         if (select.value === original) delete saved[key];
         else saved[key] = select.value;
         save(saved);
@@ -77,13 +80,14 @@
       counts[select.value] = (counts[select.value] || 0) + 1;
     });
     summary.textContent = (counts.buy || 0) + ' to buy, ' + (counts.ordered || 0) + ' ordered, ' +
-      (counts['check first'] || 0) + ' to check, ' + (counts.have || 0) + ' in hand';
+      (counts['check first'] || 0) + ' to check, ' + (counts.have || 0) + ' in hand, ' + (counts['not needed'] || 0) + ' not needed';
   }
 
   reset.addEventListener('click', function () {
     selects.forEach(function (select) {
       select.value = select.dataset.original;
       select.dataset.status = select.value;
+      select.closest('tr').dataset.status = select.value;
     });
     saved = {};
     save(saved);
