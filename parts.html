@@ -27,7 +27,7 @@
       <p class="crumbs"><a href="index.html">LetItRip_ROS</a> / Parts list</p>
       <h1>Parts list</h1>
       <p class="lede">Every electrical part for the robot and the laptop side, both what is already here and what still has to be bought. The frame and armour are not included.</p>
-      <p class="minor">Prices include VAT and exclude shipping. They were checked on 29 and 30 October 2026 and can change. Delivery to Austria still has to be confirmed in the FPV24 cart, because LiPos count as dangerous goods.</p>
+      <p class="minor">Prices include VAT and exclude shipping. They were checked on 29 and 30 October 2026 and can change. Check that hobbydrone.cz ships LiPos to Austria before ordering the battery.</p>
       <div class="parts-tools" id="parts-tools" hidden>
         <p id="parts-summary" aria-live="polite"></p>
         <button type="button" id="parts-reset">Reset to published list</button>
@@ -44,18 +44,18 @@
             <tr><td>Teensy 4.0</td><td class="mono">1</td><td><span class="tag ok">have</span></td><td>–</td><td class="mono">–</td><td class="note">Working board</td></tr>
             <tr><td>D3530 1100 KV brushless motor</td><td class="mono">2</td><td><span class="tag wip">expected</span></td><td>–</td><td class="mono">–</td><td class="note">2 to 4S, up to 315 W, 74 g each</td></tr>
             <tr><td>Power switch or removable link</td><td class="mono">1</td><td><span class="tag wip">expected</span></td><td>–</td><td class="mono">–</td><td class="note"></td></tr>
-            <tr><td><a href="https://www.fpv24.com/en/holybro/holybro-tekko32-f4-45a-am32-26s-esc">Holybro Tekko32 F4 45A AM32 ESC</a></td><td class="mono">2</td><td><span class="tag">buy</span></td><td>FPV24</td><td class="mono">€36.90 each</td><td class="note">Telemetry pad not confirmed. The robot drives without it</td></tr>
-            <tr><td><a href="https://www.berrybase.at/adafruit-h3lis331-ultra-weitbereich-drei-achsen-beschleunigungsmesser">Adafruit H3LIS331 accelerometer</a></td><td class="mono">1</td><td><span class="tag">buy</span></td><td>Berrybase</td><td class="mono">€29.90</td><td class="note">Only 3 in stock</td></tr>
-            <tr><td><a href="https://www.berrybase.at/pololu-s13v20f5-5v-2a-step-up-step-down-spannungsregler">Pololu S13V20F5 5 V regulator</a></td><td class="mono">1</td><td><span class="tag">buy</span></td><td>Berrybase</td><td class="mono">€17.95</td><td class="note">About 1 A at 4S. No reverse-polarity protection</td></tr>
-            <tr><td><a href="https://www.berrybase.at/sn74ahct125n-quad-level-shifter-dil-14">SN74AHCT125N level shifter</a></td><td class="mono">1</td><td><span class="tag">buy</span></td><td>Berrybase</td><td class="mono">€0.54</td><td class="note">Between pin 6 and the LED strip</td></tr>
-            <tr><td>Capacitor 470 µF, at least 35 V, low ESR</td><td class="mono">1</td><td><span class="tag">buy</span></td><td>Amazon.de / eBay.de</td><td class="mono">check shop</td><td class="note">Across VBAT, close to the ESCs</td></tr>
-            <tr><td><a href="https://www.berrybase.at/digitaler-led-rgb-neopixel-stripe-ws2812b-15-leds-adressierbar-ip65-50-cm-5v-selbstklebend">WS2812B LED strip, 15 LEDs</a></td><td class="mono">1</td><td><span class="tag">buy</span></td><td>Berrybase</td><td class="mono">€4.70</td><td class="note">Cut to 11. Patterns depend on the LED spacing</td></tr>
-            <tr><td>RGB LED, common cathode, 5 mm</td><td class="mono">1</td><td><span class="tag">buy</span></td><td>Amazon.de / eBay.de</td><td class="mono">check shop</td><td class="note">Heading and ROS link indicator</td></tr>
-            <tr><td>Resistors for the RGB LED</td><td class="mono">3</td><td><span class="tag">buy</span></td><td>Amazon.de / eBay.de</td><td class="mono">check shop</td><td class="note">Assortment is fine</td></tr>
-            <tr><td>HC-12 433 MHz radio with antenna</td><td class="mono">1</td><td><span class="tag">buy</span></td><td>Amazon.de / eBay.de</td><td class="mono">about €8 to 12</td><td class="note">Set to <code>AT+P4</code>, channels 1 to 4</td></tr>
-            <tr><td><a href="https://www.galaxus.at/en/s5/product/fly-sky-flysky-fs-ia10b-afhds2a-receiver-10-channel-with-ibus-rc-receivers-36690636">SBUS receiver, FlySky, 10 channels</a></td><td class="mono">1</td><td><span class="tag wip">check first</span></td><td>Old robot, else eBay.de or Galaxus</td><td class="mono">about €20 to 27 if new</td><td class="note">Reuse the old one if it still exists. FS-iA10B is the candidate; confirm SBUS output before buying</td></tr>
-            <tr><td><a href="https://fpv24.com/en/tattu/tattu-r-line-850mah-4s-95c-148v-lipo-akku-xt60">Tattu R-Line 850 mAh 4S 95C battery</a></td><td class="mono">1+</td><td><span class="tag">buy</span></td><td>FPV24</td><td class="mono">€23.90</td><td class="note">About 108 g. Only 2 in stock. Size depends on the weight class</td></tr>
-            <tr><td><a href="https://www.fpv24.com/en/fpv24/xt60-connector">XT60 connector</a></td><td class="mono">1</td><td><span class="tag">buy</span></td><td>FPV24</td><td class="mono">check shop</td><td class="note">Robot side, mates with the battery</td></tr>
+            <tr><td><a href="https://hobbydrone.cz/en/esc-single-flycolor-raptor-pro-30a-2-4s">Flycolor Raptor Pro 30A ESC (2–4S)</a></td><td class="mono">2</td><td><span class="tag ok">have</span></td><td>hobbydrone.cz</td><td class="mono">€14.50 each</td><td class="note">BLHeli_S, DShot600. Test 3D mode on the bench with the wheels off the ground</td></tr>
+            <tr><td><a href="https://www.berrybase.at/adafruit-h3lis331-ultra-weitbereich-drei-achsen-beschleunigungsmesser">Adafruit H3LIS331 accelerometer (ADA4627)</a></td><td class="mono">1</td><td><span class="tag ok">have</span></td><td>Berrybase</td><td class="mono">€29.90</td><td class="note">Mount 4 cm from the spin centre or change <code>IMU_RADIUS</code></td></tr>
+            <tr><td><a href="https://www.berrybase.at/pololu-s13v20f5-5v-2a-step-up-step-down-spannungsregler">Pololu S13V20F5 5 V regulator</a></td><td class="mono">1</td><td><span class="tag ok">have</span></td><td>Berrybase</td><td class="mono">€17.95</td><td class="note">No reverse-polarity protection, so check the battery polarity</td></tr>
+            <tr><td><a href="https://www.berrybase.at/sn74ahct125n-quad-level-shifter-dil-14">SN74AHCT125N level shifter</a></td><td class="mono">1</td><td><span class="tag ok">have</span></td><td>Berrybase</td><td class="mono">€0.54</td><td class="note">Between pin 6 and the LED strip</td></tr>
+            <tr><td><a href="https://www.amazon.de/-/en/dp/B0B395BFSW">AFAIK electrolytic capacitor assortment, 300 pieces</a></td><td class="mono">1 set</td><td><span class="tag ok">have</span></td><td>Amazon.de</td><td class="mono">–</td><td class="note">Use a 470 µF one rated at least 35 V. Check the assortment has it, or use the closest larger value</td></tr>
+            <tr><td><a href="https://www.berrybase.at/digitaler-led-rgb-neopixel-stripe-ws2812b-15-leds-adressierbar-ip65-50-cm-5v-selbstklebend">WS2812B LED strip, 15 LEDs</a></td><td class="mono">1</td><td><span class="tag">buy</span></td><td>Berrybase or Amazon.de</td><td class="mono">€4.70 at Berrybase</td><td class="note">Cut to 11. Patterns depend on the LED spacing</td></tr>
+            <tr><td>RGB LED, common cathode, 5 mm</td><td class="mono">1</td><td><span class="tag">buy</span></td><td>Amazon.de</td><td class="mono">check shop</td><td class="note">Heading and ROS link indicator</td></tr>
+            <tr><td>Resistors for the RGB LED</td><td class="mono">3</td><td><span class="tag">buy</span></td><td>Amazon.de</td><td class="mono">check shop</td><td class="note">Assortment is fine</td></tr>
+            <tr><td><a href="https://www.amazon.de/-/en/dp/B07C92ZRS8">ARCELI HC-12 433 MHz radio (SI4438)</a></td><td class="mono">1</td><td><span class="tag ok">have</span></td><td>Amazon.de</td><td class="mono">–</td><td class="note">Set to <code>AT+P4</code>, channels 1 to 4. Antenna not listed in the box contents</td></tr>
+            <tr><td><a href="https://www.amazon.de/-/en/dp/B092VW9Y4J">FlySky FS-A8S receiver (DollaTek)</a></td><td class="mono">1</td><td><span class="tag ok">have</span></td><td>Amazon.de</td><td class="mono">–</td><td class="note">Sold as 8 channels, but the firmware reads channels 7 to 10. Check which channels arrive over SBUS</td></tr>
+            <tr><td><a href="https://www.hobbydrone.cz/battery-cnhl-ministar-850mah-11-1v-3s-70c-lipo-xt30u/">3S battery, e.g. CNHL MiniStar 850 mAh 3S 70C</a></td><td class="mono">1+</td><td><span class="tag">buy</span></td><td>hobbydrone.cz</td><td class="mono">€13.00</td><td class="note">3S worked last time at half throttle. Has an XT30 plug</td></tr>
+            <tr><td><a href="https://www.hobbydrone.cz/cables-and-connectors/">Battery connector matching the pack</a></td><td class="mono">1</td><td><span class="tag">buy</span></td><td>hobbydrone.cz</td><td class="mono">about €2.40</td><td class="note">XT30 for the CNHL pack, robot side</td></tr>
             <tr><td>Silicone wire and heat shrink</td><td class="mono">1 set</td><td><span class="tag wip">check first</span></td><td>Amazon.de / eBay.de</td><td class="mono">check shop</td><td class="note">Skip if you have some</td></tr>
           </tbody>
         </table>
@@ -70,9 +70,9 @@
           <tbody>
             <tr><td>FlySky RC transmitter</td><td class="mono">1</td><td><span class="tag ok">have</span></td><td>–</td><td class="mono">–</td><td class="note">Needs at least 10 channels on SBUS. Exact model to confirm</td></tr>
             <tr><td>Laptop with Ubuntu 24.04 and ROS 2 Jazzy</td><td class="mono">1</td><td><span class="tag ok">have</span></td><td>–</td><td class="mono">–</td><td class="note"></td></tr>
-            <tr><td>Existing radio adapter</td><td class="mono">1</td><td><span class="tag wip">check first</span></td><td>–</td><td class="mono">–</td><td class="note">If it is an ESP32 with HC-12, skip the next two rows</td></tr>
-            <tr><td>HC-12 433 MHz radio with antenna</td><td class="mono">1</td><td><span class="tag">buy</span></td><td>Amazon.de / eBay.de</td><td class="mono">about €8 to 12</td><td class="note">Same channel and baud rate as the robot</td></tr>
-            <tr><td><a href="https://www.berrybase.at/waveshare-cp2102-usb-c-zu-uart-modul-led-indikatoren-txd-rxd-rts-cts-multikompatibel-5v-3.3v">Waveshare CP2102 USB-C adapter</a></td><td class="mono">1</td><td><span class="tag">buy</span></td><td>Berrybase</td><td class="mono">€4.50</td><td class="note">Connects the laptop to the HC-12</td></tr>
+            <tr><td>Existing radio adapter</td><td class="mono">1</td><td><span class="tag">not needed</span></td><td>–</td><td class="mono">–</td><td class="note">Replaced by the CP2102 adapter and the second HC-12</td></tr>
+            <tr><td><a href="https://www.amazon.de/-/en/dp/B07C92ZRS8">ARCELI HC-12 433 MHz radio (SI4438)</a></td><td class="mono">1</td><td><span class="tag ok">have</span></td><td>Amazon.de</td><td class="mono">–</td><td class="note">Same channel and baud rate as the robot</td></tr>
+            <tr><td><a href="https://www.berrybase.at/waveshare-cp2102-usb-c-zu-uart-modul-led-indikatoren-txd-rxd-rts-cts-multikompatibel-5v-3.3v">Waveshare CP2102 USB-C to UART adapter</a></td><td class="mono">1</td><td><span class="tag ok">have</span></td><td>Berrybase</td><td class="mono">€4.50</td><td class="note">Start the bridge with <code>baud_rate:=9600</code></td></tr>
             <tr><td>USB cables</td><td class="mono">2</td><td><span class="tag wip">check first</span></td><td>–</td><td class="mono">–</td><td class="note">Micro USB for the Teensy, USB-C for the adapter</td></tr>
           </tbody>
         </table>
@@ -85,9 +85,9 @@
         <table>
           <thead><tr><th>Part</th><th>Qty</th><th>Status</th><th>Where</th><th>Price</th><th>Note</th></tr></thead>
           <tbody>
-            <tr><td><a href="https://www.fpv24.com/en/toolkitrc/toolkitrc-m4-pocket-lipo-1-4s-5a-charger-dc-7-25v-usb-c">ToolkitRC M4 Pocket charger</a></td><td class="mono">1</td><td><span class="tag wip">check first</span></td><td>FPV24</td><td class="mono">€32.90</td><td class="note">Skip if you own a 4S balance charger. Stock not shown</td></tr>
+            <tr><td><a href="https://www.hobbydrone.cz/charger-skyrc-type35-2-4s-lithium/">Balance charger for 3S, e.g. SkyRC Type35 (2–4S)</a></td><td class="mono">1</td><td><span class="tag wip">check first</span></td><td>hobbydrone.cz</td><td class="mono">€14.90</td><td class="note">Skip if you own one. Confirm it balances LiPos and how it is powered</td></tr>
             <tr><td>Power supply for the charger</td><td class="mono">1</td><td><span class="tag wip">check first</span></td><td>–</td><td class="mono">–</td><td class="note">USB-C supply or DC 7 to 25 V</td></tr>
-            <tr><td><a href="https://www.fpv24.com/en/team-blacksheep/tbs-lipo-sicherheitstasche">TBS LiPo safety bag</a></td><td class="mono">1</td><td><span class="tag">buy</span></td><td>FPV24</td><td class="mono">€8.90</td><td class="note">Fits one or two packs</td></tr>
+            <tr><td><a href="https://www.amazon.de/-/en/dp/B0H945726X">Fireproof, waterproof LiPo safe bag</a></td><td class="mono">1</td><td><span class="tag ok">have</span></td><td>Amazon.de</td><td class="mono">–</td><td class="note"></td></tr>
             <tr><td>Soldering iron, solder, multimeter</td><td class="mono">1 set</td><td><span class="tag wip">check first</span></td><td>–</td><td class="mono">–</td><td class="note">The multimeter is needed to check signal levels</td></tr>
           </tbody>
         </table>
@@ -113,9 +113,10 @@
         <table>
           <thead><tr><th>Shop</th><th>What to order</th><th>Known total</th></tr></thead>
           <tbody>
-            <tr><td><a href="https://www.berrybase.at">Berrybase</a></td><td>Accelerometer, regulator, level shifter, LED strip, USB adapter</td><td class="mono">€57.59</td></tr>
-            <tr><td><a href="https://www.fpv24.com">FPV24</a></td><td>2 ESCs, battery, XT60 connector, safety bag, charger</td><td class="mono">€139.50 + XT60</td></tr>
-            <tr><td>Amazon.de or eBay.de</td><td>2 HC-12 radios, capacitor, RGB LED, resistors, wire</td><td class="mono">not checked</td></tr>
+            <tr><td>Berrybase</td><td>Accelerometer, regulator, level shifter, USB adapter</td><td class="mono">received</td></tr>
+            <tr><td>Amazon.de</td><td>2 HC-12 radios, receiver, capacitors, safety bag</td><td class="mono">received</td></tr>
+            <tr><td>hobbydrone.cz</td><td>2 ESCs</td><td class="mono">received</td></tr>
+            <tr><td>Still to order</td><td>LED strip, RGB LED, resistors, battery and connector, wire, charger if needed</td><td class="mono">Amazon.de + hobbydrone.cz</td></tr>
           </tbody>
         </table>
       </div>
@@ -125,7 +126,7 @@
   <footer class="site-footer">
     <div class="wrap">
       <span>LetItRip_ROS · build notes by Jakob</span>
-      <span>Updated 30 Oct 2026</span>
+      <span>Updated 10 Nov 2026</span>
     </div>
   </footer>
   <script src="assets/js/parts.js" defer></script>
