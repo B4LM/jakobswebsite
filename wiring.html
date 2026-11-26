@@ -198,10 +198,11 @@
 
           <!-- SBUS receiver -->
           <line class="w" x1="800" y1="320" x2="692" y2="320" marker-end="url(#a)"/>
-          <text class="lab" x="745" y="314" text-anchor="middle">SBUS</text>
-          <rect class="box" x="800" y="295" width="210" height="60" rx="4"/>
+          <text class="lab" x="745" y="314" text-anchor="middle">TX · SBUS</text>
+          <rect class="box" x="800" y="295" width="210" height="75" rx="4"/>
           <text class="t" x="905" y="320" text-anchor="middle">RP2 V2 receiver</text>
           <text class="s" x="905" y="339" text-anchor="middle">ELRS 2.4 GHz · SBUS out</text>
+          <text class="s" x="905" y="358" text-anchor="middle">RX pad not connected</text>
           <line class="wr" x1="1010" y1="325" x2="1030" y2="325"/>
           <rect class="pill-r" x="1030" y="314" width="46" height="22" rx="11"/>
           <text class="tr" x="1053" y="329" text-anchor="middle">5 V</text>
@@ -369,6 +370,21 @@
     </div>
     </section>
 
+    <section aria-labelledby="receiver">
+      <h2 id="receiver">RP2 V2 receiver wires</h2>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>RP2 marking</th><th>Connects to</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">⊖</td><td>GND</td><td class="note">Ground symbol, common with all other grounds</td></tr>
+          <tr><td class="mono">5V</td><td>5 V rail (regulator output)</td><td class="note">Not the Teensy's 3.3 V pin</td></tr>
+          <tr><td class="mono">TX</td><td>Teensy pin 15 · RX3</td><td class="note">SBUS signal, 3.3 V, no level shifter needed</td></tr>
+          <tr><td class="mono">RX</td><td>not connected</td><td class="note">Insulate the wire end</td></tr>
+        </tbody>
+      </table>
+    </div>
+    </section>
+
     <section aria-labelledby="checks">
       <h2 id="checks">Before you solder</h2>
       <ul class="checks">
@@ -377,7 +393,7 @@
       <li>Solder the 470 µF capacitor (at least 35 V, low ESR) across VBAT as close to the ESCs as possible, with the stripe (minus) on GND. It absorbs the voltage spikes the ESCs cause.</li>
       <li>Wire the 74AHCT125 (DIL-14): pin 14 to 5 V, pin 7 to GND, pin 1 (1OE) to GND, pin 2 (1A) from Teensy pin 6, pin 3 (1Y) to the strip DIN. Tie the unused inputs (pins 5, 9, 12) and enable pins (4, 10, 13) to GND.</li>
       <li>Mount the accelerometer 4 cm from the spin centre, or change <code>IMU_RADIUS</code> in <code>src/main.cpp</code> to match.</li>
-      <li>Set up the RP2 before wiring it: update the Pocket and the RP2 to the same ExpressLRS 3.x version (3.3 or newer, EU LBT on both) and bind them. Then, in the RP2 web page or the ELRS Lua script, set <b>Serial Protocol</b> to <b>SBUS</b> (try Inverted SBUS if the Teensy sees no frames), the packet rate to a <b>Full Res</b> mode so channel 5 (melty tune) stays analog, and failsafe to <b>No Pulses</b> so the 1 s receiver watchdog stops the robot.</li>
+      <li>Set up the RP2 before wiring it: update the Pocket and the RP2 to the same ExpressLRS 3.x version (3.3 or newer, EU LBT on both) and bind them. Then, with the RP2 powered and bound, open <i>Tools → ExpressLRS → Other Devices → RP2</i> on the Pocket (or the RP2 web page) and set <b>Protocol</b> to <b>SBUS</b> (try Inverted SBUS if the Teensy sees no frames). This setting is stored on the receiver; the Pocket's <i>Model → Internal RF</i> stays on CRSF. Also set the packet rate to a <b>Full Res</b> mode so channel 5 (melty tune) stays analog, and failsafe to <b>No Pulses</b> so the 1 s receiver watchdog stops the robot.</li>
       <li>Power the RP2 from the 5 V rail. Its signal is 3.3 V, so it goes straight to pin 15 without a level shifter.</li>
       <li>Measure the stick and switch values once with <code>RECEIVER_DEBUG</code>. ELRS sends about 172 / 992 / 1811 instead of the FlySky values 240 / 1022 / 1807 in <code>src/main.cpp</code>, and the switches are compared against exact values.</li>
       <li>The Pocket has enough channels for the LED pattern and flip switches (channels 9 and 10), so <code>useLedAndFlipSwitches</code> can be set to <code>true</code>.</li>
