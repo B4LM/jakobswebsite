@@ -374,7 +374,7 @@
       <table>
         <thead><tr><th>CP2102 adapter</th><th>HC-12</th><th>Note</th></tr></thead>
         <tbody>
-          <tr><td class="mono">VCC</td><td class="mono">VCC</td><td class="note">From the laptop's USB. Follows the voltage switch; the HC-12 runs on 3.2 to 5.5 V</td></tr>
+          <tr><td class="mono">VCCIO</td><td class="mono">VCC</td><td class="note">From the laptop's USB. Follows the voltage switch; the HC-12 runs on 3.2 to 5.5 V</td></tr>
           <tr><td class="mono">GND</td><td class="mono">GND</td><td class="note"></td></tr>
           <tr><td class="mono">TXD</td><td class="mono">RXD</td><td class="note">Commands from the laptop to the radio</td></tr>
           <tr><td class="mono">RXD</td><td class="mono">TXD</td><td class="note">Telemetry from the robot, nothing is sent yet</td></tr>
@@ -383,7 +383,7 @@
         </tbody>
       </table>
     </div>
-      <p class="minor">Set the adapter's voltage switch to 3.3 V, because the HC-12 works with 3.3 V signals. RTS and CTS stay unconnected. Start the bridge with <code>ros2 launch letitrip_bringup radio_bridge.launch.py serial_port:=/dev/ttyUSB0 baud_rate:=9600</code>.</p>
+      <p class="minor">Set the adapter's voltage switch to 3.3 V, because the HC-12 works with 3.3 V signals. All other adapter pins (RTS, CTS, RI, DCD, DTR, DSR, RESET_, SUSPEND_, SUSPEND) stay unconnected. Start the bridge with <code>ros2 launch letitrip_bringup radio_bridge.launch.py serial_port:=/dev/ttyUSB0 baud_rate:=9600</code>.</p>
     </section>
 
     <section aria-labelledby="receiver">
