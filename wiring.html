@@ -277,7 +277,7 @@
       <h2 id="base">Base station and radio links</h2>
       <figure>
       <div class="sheet">
-        <svg viewBox="0 0 1100 330" role="img" aria-label="Base station: the laptop running ROS 2 connects over USB to an ESP32, which talks to an HC-12 radio on pins 21, 22 and 15. That HC-12 talks to the robot's HC-12 at 433 MHz. Separately, the RadioMaster Pocket transmitter talks to the robot's RP2 receiver over ExpressLRS at 2.4 GHz. An arena camera connects to the laptop over USB for autonomous driving.">
+        <svg viewBox="0 0 1100 330" role="img" aria-label="Base station: the laptop running ROS 2 connects over USB to a Waveshare CP2102 USB to UART adapter, whose TXD and RXD go crossed to an HC-12 radio with SET left open. That HC-12 talks to the robot's HC-12 at 433 MHz. Separately, the RadioMaster Pocket transmitter talks to the robot's RP2 receiver over ExpressLRS at 2.4 GHz. An arena camera connects to the laptop over USB for autonomous driving.">
           <defs>
             <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
             <marker id="bx" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah-x"/></marker>
@@ -297,24 +297,22 @@
 
           <line class="w" x1="222" y1="175" x2="318" y2="175" marker-start="url(#b)" marker-end="url(#b)"/>
           <text class="lab" x="270" y="168" text-anchor="middle">USB serial</text>
-          <text class="lab" x="270" y="192" text-anchor="middle">115200</text>
+          <text class="lab" x="270" y="192" text-anchor="middle">9600</text>
 
           <rect class="box" x="320" y="130" width="170" height="90" rx="4"/>
-          <text class="t" x="405" y="157" text-anchor="middle">ESP32</text>
-          <text class="sm" x="405" y="177" text-anchor="middle">transciever_PC_side</text>
-          <text class="s" x="405" y="197" text-anchor="middle">sketch from robofetz_as</text>
+          <text class="t" x="405" y="157" text-anchor="middle">Waveshare CP2102</text>
+          <text class="sm" x="405" y="177" text-anchor="middle">USB-C to UART</text>
+          <text class="s" x="405" y="197" text-anchor="middle">voltage switch on 3.3 V</text>
 
-          <line class="w" x1="490" y1="150" x2="588" y2="150" marker-end="url(#b)"/>
-          <text class="lab" x="540" y="144" text-anchor="middle">21 → RX</text>
-          <line class="w" x1="590" y1="175" x2="492" y2="175" marker-end="url(#b)"/>
-          <text class="lab" x="540" y="169" text-anchor="middle">22 ← TX</text>
-          <line class="w" x1="490" y1="200" x2="588" y2="200" marker-end="url(#b)"/>
-          <text class="lab" x="540" y="194" text-anchor="middle">15 → SET</text>
+          <line class="w" x1="490" y1="160" x2="588" y2="160" marker-end="url(#b)"/>
+          <text class="lab" x="540" y="154" text-anchor="middle">TXD → RXD</text>
+          <line class="w" x1="590" y1="190" x2="492" y2="190" marker-end="url(#b)"/>
+          <text class="lab" x="540" y="184" text-anchor="middle">RXD ← TXD</text>
 
           <rect class="box" x="590" y="130" width="150" height="90" rx="4"/>
           <text class="t" x="665" y="157" text-anchor="middle">HC-12 radio</text>
           <text class="s" x="665" y="177" text-anchor="middle">433 MHz · 9600 baud</text>
-          <text class="s" x="665" y="197" text-anchor="middle">SET held high</text>
+          <text class="s" x="665" y="197" text-anchor="middle">SET not connected</text>
 
           <line class="wx" x1="742" y1="175" x2="898" y2="175" marker-start="url(#bx)" marker-end="url(#bx)"/>
           <text class="tx" x="820" y="166" text-anchor="middle">433 MHz</text>
@@ -337,7 +335,7 @@
           <text class="sm" x="975" y="284" text-anchor="middle">Teensy pin 15</text>
         </svg>
       </div>
-      <figcaption>Two independent radio links reach the robot. The HC-12 pair carries the ROS commands; the RC transmitter keeps working on its own link and decides through the mode switch whether ROS or the sticks drive. Both HC-12 modules must use the same channel and baud rate.</figcaption>
+      <figcaption>Two independent radio links reach the robot. The HC-12 pair carries the ROS commands; the RC transmitter keeps working on its own link and decides through the mode switch whether ROS or the sticks drive. Both HC-12 modules must use the same channel and baud rate. The CP2102 adapter replaces the ESP32 of robofetz_as, so <code>radio_bridge_node</code> writes straight to the HC-12 and has to run with <code>baud_rate:=9600</code>.</figcaption>
     </figure>
     </section>
 
@@ -368,6 +366,24 @@
         </tbody>
       </table>
     </div>
+    </section>
+
+    <section aria-labelledby="adapter">
+      <h2 id="adapter">Laptop side: CP2102 adapter to HC-12</h2>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>CP2102 adapter</th><th>HC-12</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">VCC</td><td class="mono">VCC</td><td class="note">From the laptop's USB. Follows the voltage switch; the HC-12 runs on 3.2 to 5.5 V</td></tr>
+          <tr><td class="mono">GND</td><td class="mono">GND</td><td class="note"></td></tr>
+          <tr><td class="mono">TXD</td><td class="mono">RXD</td><td class="note">Commands from the laptop to the radio</td></tr>
+          <tr><td class="mono">RXD</td><td class="mono">TXD</td><td class="note">Telemetry from the robot, nothing is sent yet</td></tr>
+          <tr><td class="mono">–</td><td class="mono">SET</td><td class="note">Not connected for normal use. Only to GND while configuring with AT commands</td></tr>
+          <tr><td class="mono">–</td><td class="mono">ANT</td><td class="note">Spring antenna from the package soldered on</td></tr>
+        </tbody>
+      </table>
+    </div>
+      <p class="minor">Set the adapter's voltage switch to 3.3 V, because the HC-12 works with 3.3 V signals. RTS and CTS stay unconnected. Start the bridge with <code>ros2 launch letitrip_bringup radio_bridge.launch.py serial_port:=/dev/ttyUSB0 baud_rate:=9600</code>.</p>
     </section>
 
     <section aria-labelledby="receiver">
