@@ -70,7 +70,7 @@
       <h2 id="robot">On the robot</h2>
       <figure>
       <div class="sheet">
-        <svg viewBox="0 0 1100 750" role="img" aria-label="Robot wiring: the LiPo goes through the power switch to the two ESCs (VBAT) and to a 5 V regulator. The Teensy 4.0 drives ESC 1 on pin 4 and ESC 2 on pin 8 with DSHOT and reads their telemetry on pins 0 and 7. On the other side it reads the H3LIS331 accelerometer over I2C on pins 18 and 19, the SBUS receiver on pin 15, the HC-12 radio on pins 16 and 17, drives the RGB LED on pins 2, 3 and 5 and the LED strip on pin 6 through a 74AHCT125 level shifter. A 470 µF capacitor sits across VBAT. Pins 20 and 21 are reserved for a planned distance sensor.">
+        <svg viewBox="0 0 1100 750" role="img" aria-label="Robot wiring: the LiPo goes through the power switch to the two ESCs (VBAT) and to a 5 V regulator. The Teensy 4.0 drives ESC 1 on pin 4 and ESC 2 on pin 8 with DSHOT and reads their telemetry on pins 0 and 7. On the other side it reads the H3LIS331 accelerometer over I2C on pins 18 and 19, the RadioMaster RP2 ELRS receiver (SBUS) on pin 15, the HC-12 radio on pins 16 and 17, drives the RGB LED on pins 2, 3 and 5 and the LED strip on pin 6 through a 74AHCT125 level shifter. A 470 µF capacitor sits across VBAT. Pins 20 and 21 are reserved for a planned distance sensor.">
           <defs>
             <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
             <marker id="ap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah-p"/></marker>
@@ -200,8 +200,8 @@
           <line class="w" x1="800" y1="320" x2="692" y2="320" marker-end="url(#a)"/>
           <text class="lab" x="745" y="314" text-anchor="middle">SBUS</text>
           <rect class="box" x="800" y="295" width="210" height="60" rx="4"/>
-          <text class="t" x="905" y="320" text-anchor="middle">SBUS receiver</text>
-          <text class="s" x="905" y="339" text-anchor="middle">2.4 GHz · at least 10 ch</text>
+          <text class="t" x="905" y="320" text-anchor="middle">RP2 V2 receiver</text>
+          <text class="s" x="905" y="339" text-anchor="middle">ELRS 2.4 GHz · SBUS out</text>
           <line class="wr" x1="1010" y1="325" x2="1030" y2="325"/>
           <rect class="pill-r" x="1030" y="314" width="46" height="22" rx="11"/>
           <text class="tr" x="1053" y="329" text-anchor="middle">5 V</text>
@@ -276,7 +276,7 @@
       <h2 id="base">Base station and radio links</h2>
       <figure>
       <div class="sheet">
-        <svg viewBox="0 0 1100 330" role="img" aria-label="Base station: the laptop running ROS 2 connects over USB to an ESP32, which talks to an HC-12 radio on pins 21, 22 and 15. That HC-12 talks to the robot's HC-12 at 433 MHz. Separately, the RC transmitter talks to the robot's SBUS receiver at 2.4 GHz. An arena camera connects to the laptop over USB for autonomous driving.">
+        <svg viewBox="0 0 1100 330" role="img" aria-label="Base station: the laptop running ROS 2 connects over USB to an ESP32, which talks to an HC-12 radio on pins 21, 22 and 15. That HC-12 talks to the robot's HC-12 at 433 MHz. Separately, the RadioMaster Pocket transmitter talks to the robot's RP2 receiver over ExpressLRS at 2.4 GHz. An arena camera connects to the laptop over USB for autonomous driving.">
           <defs>
             <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
             <marker id="bx" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah-x"/></marker>
@@ -321,10 +321,10 @@
           <text class="lab" x="820" y="209" text-anchor="middle">← TLM (planned)</text>
 
           <rect class="box" x="590" y="240" width="150" height="60" rx="4"/>
-          <text class="t" x="665" y="265" text-anchor="middle">RC transmitter</text>
-          <text class="s" x="665" y="284" text-anchor="middle">SBUS · at least 10 ch</text>
+          <text class="t" x="665" y="265" text-anchor="middle">Pocket ELRS</text>
+          <text class="s" x="665" y="284" text-anchor="middle">RadioMaster · EdgeTX</text>
           <line class="wx" x1="742" y1="270" x2="898" y2="270" marker-end="url(#bx)"/>
-          <text class="tx" x="820" y="261" text-anchor="middle">2.4 GHz</text>
+          <text class="tx" x="820" y="261" text-anchor="middle">ELRS 2.4 GHz</text>
 
           <rect class="group" x="880" y="110" width="190" height="205" rx="8"/>
           <text class="t" x="975" y="134" text-anchor="middle">Robot</text>
@@ -332,7 +332,7 @@
           <text class="t" x="975" y="172" text-anchor="middle">HC-12 radio</text>
           <text class="sm" x="975" y="189" text-anchor="middle">Teensy pins 16 / 17</text>
           <rect class="box" x="900" y="245" width="150" height="50" rx="4"/>
-          <text class="t" x="975" y="267" text-anchor="middle">SBUS receiver</text>
+          <text class="t" x="975" y="267" text-anchor="middle">RP2 receiver</text>
           <text class="sm" x="975" y="284" text-anchor="middle">Teensy pin 15</text>
         </svg>
       </div>
@@ -353,7 +353,7 @@
           <tr><td class="mono">8</td><td>DSHOT out</td><td>ESC 2 signal</td><td class="note">Fixed by the teensyshot library</td></tr>
           <tr><td class="mono">0 · RX1</td><td>ESC 1 telemetry in</td><td>ESC 1 telemetry wire</td><td class="note"><span class="tag check">check PCB</span> 115200 baud</td></tr>
           <tr><td class="mono">7 · RX2</td><td>ESC 2 telemetry in</td><td>ESC 2 telemetry wire</td><td class="note"><span class="tag check">check PCB</span> 115200 baud</td></tr>
-          <tr><td class="mono">15 · RX3</td><td>SBUS in</td><td>SBUS receiver signal</td><td class="note">Inversion is handled by the SBUS library</td></tr>
+          <tr><td class="mono">15 · RX3</td><td>SBUS in</td><td>RP2 TX pad</td><td class="note">RP2 serial protocol set to SBUS. Inversion is handled by the SBUS library. RP2 RX stays unconnected</td></tr>
           <tr><td class="mono">16 · RX4</td><td>ROS link in</td><td>HC-12 TX</td><td class="note"><span class="tag check">check PCB</span> 9600 baud</td></tr>
           <tr><td class="mono">17 · TX4</td><td>ROS link out</td><td>HC-12 RX</td><td class="note">For telemetry to the laptop, nothing is sent yet</td></tr>
           <tr><td class="mono">18 · SDA</td><td>I2C data</td><td>Accelerometer SDA</td><td class="note"></td></tr>
@@ -377,6 +377,10 @@
       <li>Solder the 470 µF capacitor (at least 35 V, low ESR) across VBAT as close to the ESCs as possible, with the stripe (minus) on GND. It absorbs the voltage spikes the ESCs cause.</li>
       <li>Wire the 74AHCT125 (DIL-14): pin 14 to 5 V, pin 7 to GND, pin 1 (1OE) to GND, pin 2 (1A) from Teensy pin 6, pin 3 (1Y) to the strip DIN. Tie the unused inputs (pins 5, 9, 12) and enable pins (4, 10, 13) to GND.</li>
       <li>Mount the accelerometer 4 cm from the spin centre, or change <code>IMU_RADIUS</code> in <code>src/main.cpp</code> to match.</li>
+      <li>Set up the RP2 before wiring it: update the Pocket and the RP2 to the same ExpressLRS 3.x version (3.3 or newer, EU LBT on both) and bind them. Then, in the RP2 web page or the ELRS Lua script, set <b>Serial Protocol</b> to <b>SBUS</b> (try Inverted SBUS if the Teensy sees no frames), the packet rate to a <b>Full Res</b> mode so channel 5 (melty tune) stays analog, and failsafe to <b>No Pulses</b> so the 1 s receiver watchdog stops the robot.</li>
+      <li>Power the RP2 from the 5 V rail. Its signal is 3.3 V, so it goes straight to pin 15 without a level shifter.</li>
+      <li>Measure the stick and switch values once with <code>RECEIVER_DEBUG</code>. ELRS sends about 172 / 992 / 1811 instead of the FlySky values 240 / 1022 / 1807 in <code>src/main.cpp</code>, and the switches are compared against exact values.</li>
+      <li>The Pocket has enough channels for the LED pattern and flip switches (channels 9 and 10), so <code>useLedAndFlipSwitches</code> can be set to <code>true</code>.</li>
       <li>Assign SBUS channel 8 (index 7 in the code) to a switch on the transmitter. It selects RC or ROS control.</li>
     </ul>
     </section>
@@ -385,7 +389,7 @@
   <footer class="site-footer">
     <div class="wrap">
       <span>LetItRip_ROS · build notes by Jakob</span>
-      <span>Updated 30 Oct 2026</span>
+      <span>Updated 26 Nov 2026</span>
     </div>
   </footer>
 </body>

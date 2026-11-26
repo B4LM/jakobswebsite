@@ -53,7 +53,8 @@
             <tr><td>RGB LED, common cathode, 5 mm</td><td class="mono">1</td><td><span class="tag">buy</span></td><td>Amazon.de</td><td class="mono">check shop</td><td class="note">Heading and ROS link indicator</td></tr>
             <tr><td>Resistors for the RGB LED</td><td class="mono">3</td><td><span class="tag">buy</span></td><td>Amazon.de</td><td class="mono">check shop</td><td class="note">Assortment is fine</td></tr>
             <tr><td><a href="https://www.amazon.de/-/en/dp/B07C92ZRS8">ARCELI HC-12 433 MHz radio (SI4438)</a></td><td class="mono">1</td><td><span class="tag ok">have</span></td><td>Amazon.de</td><td class="mono">–</td><td class="note">Set to <code>AT+P4</code>, channels 1 to 4. Antenna not listed in the box contents</td></tr>
-            <tr><td><a href="https://www.amazon.de/-/en/dp/B092VW9Y4J">FlySky FS-A8S receiver (DollaTek)</a></td><td class="mono">1</td><td><span class="tag ok">have</span></td><td>Amazon.de</td><td class="mono">–</td><td class="note">8 channels, so the LED pattern and flip switches are skipped. The firmware uses a fixed pattern and assumes the robot is upright</td></tr>
+            <tr><td>RadioMaster RP2 V2 ELRS receiver (LBT)</td><td class="mono">1</td><td><span class="tag ok">have</span></td><td>–</td><td class="mono">–</td><td class="note">ExpressLRS 2.4 GHz, EU LBT firmware like the Pocket. Built-in ceramic antenna. Set the output to SBUS, see the wiring map</td></tr>
+            <tr><td><a href="https://www.amazon.de/-/en/dp/B092VW9Y4J">FlySky FS-A8S receiver (DollaTek)</a></td><td class="mono">1</td><td><span class="tag">not needed</span></td><td>Amazon.de</td><td class="mono">–</td><td class="note">Replaced by the RP2. FlySky receivers cannot bind to the Pocket</td></tr>
             <tr><td><a href="https://robofetz.fsmb.at/">SLS NOC Race 650 mAh 3S1P 11.1 V battery</a></td><td class="mono">1</td><td><span class="tag ok">have</span></td><td>RoboFetz</td><td class="mono">–</td><td class="note">3S worked last time at half throttle</td></tr>
             <tr><td>Battery connector matching the pack</td><td class="mono">1</td><td><span class="tag wip">check first</span></td><td>Amazon.de</td><td class="mono">check shop</td><td class="note">Check which plug the SLS pack has, then get the matching socket for the robot</td></tr>
             <tr><td>Silicone wire and heat shrink</td><td class="mono">1 set</td><td><span class="tag wip">check first</span></td><td>Amazon.de / eBay.de</td><td class="mono">check shop</td><td class="note">Skip if you have some</td></tr>
@@ -68,7 +69,8 @@
         <table>
           <thead><tr><th>Part</th><th>Qty</th><th>Status</th><th>Where</th><th>Price</th><th>Note</th></tr></thead>
           <tbody>
-            <tr><td>FlySky RC transmitter</td><td class="mono">1</td><td><span class="tag ok">have</span></td><td>–</td><td class="mono">–</td><td class="note">Needs at least 10 channels on SBUS. Exact model to confirm</td></tr>
+            <tr><td><a href="https://www.hobbydrone.cz/de/pocket-elrs-transparent/">RadioMaster Pocket ELRS, transparent (EU LBT)</a></td><td class="mono">1</td><td><span class="tag ok">have</span></td><td>hobbydrone.cz</td><td class="mono">€86</td><td class="note">ExpressLRS 2.4 GHz, EdgeTX, up to 16 channels, 100 mW. Charges its cells over USB-C</td></tr>
+            <tr><td>18650 Li-ion cells for the Pocket</td><td class="mono">2</td><td><span class="tag wip">check first</span></td><td>hobbydrone.cz</td><td class="mono">check shop</td><td class="note">Not included with the Pocket. Sony/Murata 2600 mAh or Samsung 2500 mAh, two of the same type</td></tr>
             <tr><td>Laptop with Ubuntu 24.04 and ROS 2 Jazzy</td><td class="mono">1</td><td><span class="tag ok">have</span></td><td>–</td><td class="mono">–</td><td class="note"></td></tr>
             <tr><td>Existing radio adapter</td><td class="mono">1</td><td><span class="tag">not needed</span></td><td>–</td><td class="mono">–</td><td class="note">Replaced by the CP2102 adapter and the second HC-12</td></tr>
             <tr><td><a href="https://www.amazon.de/-/en/dp/B07C92ZRS8">ARCELI HC-12 433 MHz radio (SI4438)</a></td><td class="mono">1</td><td><span class="tag ok">have</span></td><td>Amazon.de</td><td class="mono">–</td><td class="note">Same channel and baud rate as the robot</td></tr>
@@ -127,7 +129,7 @@
   <footer class="site-footer">
     <div class="wrap">
       <span>LetItRip_ROS · build notes by Jakob</span>
-      <span>Updated 10 Nov 2026</span>
+      <span>Updated 26 Nov 2026</span>
     </div>
   </footer>
   <script src="assets/js/parts.js" defer></script>
